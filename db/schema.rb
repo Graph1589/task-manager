@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_11_14_180958) do
     t.string "name"
     t.text "description"
     t.integer "author_id"
-    t.integer "assigne_id"
+    t.integer "assignee_id"
     t.string "state"
     t.date "expired_at"
     t.datetime "created_at", precision: 6, null: false
