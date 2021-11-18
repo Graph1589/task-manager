@@ -4,7 +4,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :description
       t.integer :author_id
-      t.integer :assigne_id
+      t.integer :assignee_id
       t.string :state
       t.date :expired_at
 
