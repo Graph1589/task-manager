@@ -9,6 +9,6 @@ FactoryBot.define do
     "path/avatar-#{n}"
   end
   sequence :expired_at do |n|
-    Time.now + n.days
+    Time.now.to_date + n.days
   end
 end
