@@ -1,3 +1,3 @@
-import routes from './ApiRoutes';
+import * as routes from './ApiRoutes.js';
 
 export default routes;
