@@ -1,0 +1,22 @@
+name: Coveralls
+
+on:
+  pull_request:
+    branches:
+      - 'develop'
+  push:
+    branches:
+      - 'develop'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: coverallsapp/github-action@master
+      - name: Coveralls
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          COVERAGE: true
+          RAILS_ENV: CI
+        run: docker-compose --file docker-compose.ci.yml run ci

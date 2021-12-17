@@ -12,9 +12,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v2
+
       - name: Run tests
         env:
           COVERAGE: true
           RAILS_ENV: test
         run: docker-compose --file docker-compose.ci.yml run ci
+
+      - name: Coveralls
+        env:
+          COVERAGE: true
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          path-to-lcov: './coverage/lcov.info'
+          github-token: ${{ secrets.github_token }}
