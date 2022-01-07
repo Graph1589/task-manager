@@ -40,6 +40,7 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+  gem 'bullet'
 end
 
 group :test do
@@ -69,3 +70,4 @@ gem 'active_model_serializers'
 gem 'webpacker-react', '~> 0.3.2'
 gem 'js-routes'
 gem 'rollbar'
+gem 'newrelic_rpm'
