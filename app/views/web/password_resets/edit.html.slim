@@ -1,0 +1,12 @@
+h3 New Password
+= simple_form_for @user, url: password_reset_path, as: :user do |f|
+  p
+    = f.input :password
+  p
+    = f.input :password_confirmation
+  p
+    = f.button :submit, 'Submit'
+  p 
+    = f.hidden_field :reset_digest, :value => @user.reset_digest
+  p 
+    = f.hidden_field :email, :value => @user.email

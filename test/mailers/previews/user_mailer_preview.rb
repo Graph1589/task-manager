@@ -9,7 +9,6 @@ class UserMailerPreview < ActionMailer::Preview
   end
 
   def task_updated
-    user = User.first
     task = Task.first
     params = { task: task }
 
@@ -17,10 +16,15 @@ class UserMailerPreview < ActionMailer::Preview
   end
 
   def task_destroyed
-    user = User.first
     task = Task.first
     params = { task: task }
 
     UserMailer.with(params).task_destroyed
+  end
+
+  def reset_password
+    user = User.first
+
+    UserService.reset_password!(user)
   end
 end
