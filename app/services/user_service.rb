@@ -3,7 +3,9 @@ class UserService
     token = SecureRandom.hex(10)
     user.update!(reset_digest: token, reset_sent_at: Time.current)
 
-    UserMailer.with({ user: user }).reset_password.deliver_now
+    SendPasswordResetNotificationJob.perform_async(user.id)
+
+    #UserMailer.with({ user: user }).reset_password.deliver_later
   end
 
   def self.password_reset_period_valid?(user)
