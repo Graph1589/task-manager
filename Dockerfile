@@ -1,12 +1,11 @@
 FROM ruby:2.7.1-alpine
 
 ARG RAILS_ROOT=/task_manager
-ARG PACKAGES="vim openssl-dev postgresql-dev build-base curl nodejs yarn less tzdata git postgresql-client bash screen"
+ARG PACKAGES="vim openssl-dev postgresql-dev build-base curl nodejs yarn less tzdata git postgresql-client bash screen imagemagick"
 
 RUN apk update \
     && apk upgrade \
-    && apk add --update --no-cache $PACKAGES \
-    && apk --update add imagemagick
+    && apk add --update --no-cache $PACKAGES
 
 RUN gem install bundler:2.1.4
 
