@@ -30,7 +30,6 @@ class Api::V1::TasksController < Api::V1::ApplicationController
 
     if task.update(task_params)
       SendTaskUpdateNotificationJob.perform_async(task.id)
-      # UserMailer.with({ task: task }).task_updated.deliver_later
     end
 
     respond_with(task, serializer: TaskSerializer)
@@ -41,7 +40,6 @@ class Api::V1::TasksController < Api::V1::ApplicationController
 
     if task.destroy
       SendTaskDestroyNotificationJob.perform_async(task.id)
-      # UserMailer.with({ task: task }).task_destroyed.deliver_later
     end
 
     respond_with(task)
