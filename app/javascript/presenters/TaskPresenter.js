@@ -10,6 +10,7 @@ export default new PropTypesPresenter({
   transitions: PropTypes.array,
   author: PropTypes.object,
   assignee: PropTypes.object,
+  imageUrl: PropTypes.string,
 });
 
 export const STATES = [
