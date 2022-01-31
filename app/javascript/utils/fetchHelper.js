@@ -1,3 +1,4 @@
+import { serialize } from 'object-to-formdata';
 import axios from 'axios';
 import qs from 'qs';
 
@@ -59,5 +60,23 @@ export default {
 
   delete(url) {
     return axios.delete(url).then(camelize);
+  },
+
+  putFormData(url, json) {
+    const body = decamelize(json);
+    const formData = serialize({
+      attachment: {
+        ...body.attachment,
+        image: json.attachment.image,
+      },
+    });
+
+    return axios
+      .put(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(camelize);
   },
 };
