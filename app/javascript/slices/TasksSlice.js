@@ -81,6 +81,10 @@ export const useTasksActions = () => {
 
   const loadTask = (id) => TasksRepository.show(id).then(({ data: { task } }) => task);
 
+  const attachTaskImage = (id, json) => TasksRepository.attachImage(id, json);
+
+  const removeTaskImage = (id) => TasksRepository.removeImage(id);
+
   return {
     loadBoard,
     loadColumn,
@@ -89,5 +93,7 @@ export const useTasksActions = () => {
     destroyTask,
     createTask,
     loadTask,
+    attachTaskImage,
+    removeTaskImage,
   };
 };

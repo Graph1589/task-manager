@@ -4,7 +4,16 @@ import { STATES } from 'presenters/TaskPresenter';
 
 const useTasks = () => {
   const board = useSelector((state) => state.TasksSlice.board);
-  const { loadColumn, loadColumnMore, updateTask, destroyTask, createTask, loadTask } = useTasksActions();
+  const {
+    loadColumn,
+    loadColumnMore,
+    updateTask,
+    destroyTask,
+    createTask,
+    loadTask,
+    attachTaskImage,
+    removeTaskImage,
+  } = useTasksActions();
   const loadBoard = () => Promise.all(STATES.map(({ key }) => loadColumn(key)));
 
   return {
@@ -16,6 +25,8 @@ const useTasks = () => {
     destroyTask,
     createTask,
     loadTask,
+    attachTaskImage,
+    removeTaskImage,
   };
 };
 
