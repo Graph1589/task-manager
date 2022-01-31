@@ -5,6 +5,11 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  preview: {
+    display: 'block',
+    maxWidth: 300,
+    maxHeight: 300,
+  },
 }));
 
 export default useStyles;

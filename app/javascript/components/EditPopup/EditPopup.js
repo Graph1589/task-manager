@@ -15,8 +15,9 @@ import Modal from '@material-ui/core/Modal';
 import Form from 'components/EditPopup/Form';
 
 import useStyles from './useStyles';
+import TaskPresenter from '../../presenters/TaskPresenter';
 
-const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate }) => {
+const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate, onAttachImage, onRemoveImage }) => {
   const [task, setTask] = useState(null);
   const [isSaving, setSaving] = useState(false);
   const [errors, setErrors] = useState({});
@@ -49,6 +50,17 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate })
     });
   };
 
+  const handleImageAttach = (params) => {
+    const id = TaskPresenter.id(task);
+    onCardUpdate(task);
+    onAttachImage(id, params);
+  };
+
+  const handleImageRemove = () => {
+    onCardUpdate(task);
+    onRemoveImage(TaskPresenter.id(task));
+  };
+
   const isLoading = isNil(task);
 
   return (
@@ -68,7 +80,13 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate })
               <CircularProgress />
             </div>
           ) : (
-            <Form errors={errors} onChange={setTask} task={task} />
+            <Form
+              errors={errors}
+              onChange={setTask}
+              onAttachImage={handleImageAttach}
+              onRemoveImage={handleImageRemove}
+              task={task}
+            />
           )}
         </CardContent>
         <CardActions className={styles.actions}>
@@ -102,6 +120,8 @@ EditPopup.propTypes = {
   onCardDestroy: PropTypes.func.isRequired,
   onLoadCard: PropTypes.func.isRequired,
   onCardUpdate: PropTypes.func.isRequired,
+  onAttachImage: PropTypes.func.isRequired,
+  onRemoveImage: PropTypes.func.isRequired,
 };
 
 export default EditPopup;

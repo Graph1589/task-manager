@@ -41,16 +41,12 @@ const ImageUpload = ({ onUpload }) => {
   });
 
   const handleCropChange = (_, newCropParams) => {
-    console.log('newCropParams:');
-    console.log(newCropParams);
     changeCropParams(newCropParams);
   };
 
   const handleSave = () => {
     const { naturalWidth: width, naturalHeight: height } = image;
     const actualCropParams = getActualCropParameters(width, height, cropParams);
-    console.log('actualCropParams:');
-    console.log(actualCropParams);
     onUpload({ attachment: { ...actualCropParams, image: file } });
   };
 

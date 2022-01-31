@@ -22,7 +22,18 @@ const MODES = {
 };
 
 const TaskBoard = () => {
-  const { board, loadBoard, loadColumn, loadColumnMore, updateTask, destroyTask, createTask, loadTask } = useTasks();
+  const {
+    board,
+    loadBoard,
+    loadColumn,
+    loadColumnMore,
+    updateTask,
+    destroyTask,
+    createTask,
+    loadTask,
+    attachTaskImage,
+    removeTaskImage,
+  } = useTasks();
 
   const [mode, setMode] = useState(MODES.NONE);
   const [openedTaskId, setOpenedTaskId] = useState(null);
@@ -115,6 +126,8 @@ const TaskBoard = () => {
           onCardUpdate={handleTaskUpdate}
           onClose={handleClose}
           cardId={openedTaskId}
+          onAttachImage={attachTaskImage}
+          onRemoveImage={removeTaskImage}
         />
       )}
     </>
